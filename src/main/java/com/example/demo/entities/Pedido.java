@@ -2,14 +2,9 @@ package com.example.demo.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
-
-import org.hibernate.annotations.ManyToAny;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonFormatTypes;
-
+import java.util.Set;
 import enums.StatusPedido;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,6 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Pedido implements Serializable {
@@ -31,6 +27,9 @@ public class Pedido implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "pessoa_id")
 	private Pessoa cliente;
+	
+	@OneToMany(mappedBy = "id.pedido")
+	private Set<ProdutoPedido> item = new HashSet<>();
 	
 	
 	public Pedido() {}
@@ -68,6 +67,11 @@ public class Pedido implements Serializable {
 	public void setPessoa(Pessoa pessoa) {
 		this.cliente = pessoa;
 	}
+	
+	public Set<ProdutoPedido> getItems(){
+		return item;
+	}
+	
 	@Override
 	public String toString() {
 		return "Pedido [id=" + id + ", data=" + data + ", pessoa=" + cliente + "]";

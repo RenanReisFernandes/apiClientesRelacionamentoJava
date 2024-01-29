@@ -12,9 +12,11 @@ import com.example.demo.entities.Categoria;
 import com.example.demo.entities.Pedido;
 import com.example.demo.entities.Pessoa;
 import com.example.demo.entities.Produto;
+import com.example.demo.entities.ProdutoPedido;
 import com.example.demo.repositories.CategoriaRepository;
 import com.example.demo.repositories.PedidoRepository;
 import com.example.demo.repositories.PessoaRepository;
+import com.example.demo.repositories.ProdutoPedidoRepository;
 import com.example.demo.repositories.ProdutoRepository;
 
 import enums.StatusPedido;
@@ -33,6 +35,9 @@ public class TestConfig implements CommandLineRunner {
 	
 	@Autowired
 	private CategoriaRepository categoriaRepository;
+	
+	@Autowired
+	private ProdutoPedidoRepository produtoPedidoRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -67,6 +72,13 @@ public class TestConfig implements CommandLineRunner {
 		prod2.getCategoria().add(cat2);
 		
 		produtoRepository.saveAll(Arrays.asList(prod1,prod2));
+		
+		//INSTANCIANDO PRODUTOPEDIDO
+		
+		ProdutoPedido pp1 = new ProdutoPedido(pedido2, prod1, 4,prod1.getPreco());
+		ProdutoPedido pp2 = new ProdutoPedido(pedido1,prod1,2,prod1.getPreco());
+		
+		produtoPedidoRepository.saveAll(Arrays.asList(pp1,pp2));
 		
 		
 		
