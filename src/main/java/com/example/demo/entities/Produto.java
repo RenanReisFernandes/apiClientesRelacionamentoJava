@@ -6,12 +6,15 @@ import java.util.Set;
 
 import org.hibernate.annotations.ManyToAny;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -29,6 +32,9 @@ public class Produto {
 	@JoinTable(name = "tb_produto_categoria", joinColumns = @JoinColumn(name="produto_id")
 	, inverseJoinColumns = @JoinColumn(name="categoria_id"))
 	private Set<Categoria> categorias = new HashSet<>();
+	
+	@OneToMany(mappedBy = "id.produto")
+	private Set<ProdutoPedido> itens = new HashSet<>();
 	
 	public Produto() {}
 	public Produto(Long id, String nome, String descricao, String imagemUrl, Double preco) {
@@ -76,6 +82,15 @@ public class Produto {
 	
 	public Set<Categoria> getCategoria(){
 		return categorias;
+	}
+	
+	@JsonIgnore
+	public Set<Pedido> getPedidod(){
+		Set<Pedido> pedido = new HashSet<>();
+		for(ProdutoPedido pedidos: itens) {
+			pedido.add(pedidos.getPedido());
+		}
+		return pedido;
 	}
 	
 
