@@ -7,13 +7,12 @@
 <div style="text-align: center;">
   ### REQUISIÇÃO DE PEDIDOS NO POSTMAN
 
+  <img src="![img1](https://github.com/RenanReisFernandes/apiClientesRelacionamentoJava/assets/89070469/62f85c07-4e5f-4768-bb36-6b128bd25a57)" />
  
-  <img src="[https://img.shields.io/badge/Built%20with-Love-red.svg?style=for-the-badge](https://github.com/RenanReisFernandes/apiClientesRelacionamentoJava/blob/main/img/img1.PNG)" />
-  <a>https://github.com/RenanReisFernandes/apiClientesRelacionamentoJava/blob/main/img/img1.PNG</a>
   ###ENDPOINTS
-  <img src="[https://img.shields.io/badge/Uses-Brains-blue.svg?style=for-the-badge](https://github.com/RenanReisFernandes/apiClientesRelacionamentoJava/blob/main/img/img2.PNG)" />
+  <img src="![img2](https://github.com/RenanReisFernandes/apiClientesRelacionamentoJava/assets/89070469/fe5db7ea-91f2-4c4f-aaa9-5ca0c5b93df4)" />
   ###DADOS INSERIDOS NO BANCO DE DADOS H2
-  <img src="[https://img.shields.io/badge/Powered%20by-Responsibility-orange.svg?style=for-the-badge](https://github.com/RenanReisFernandes/apiClientesRelacionamentoJava/blob/main/img/img3.PNG)" />
+  <img src="![img3](https://github.com/RenanReisFernandes/apiClientesRelacionamentoJava/assets/89070469/965b5d3c-7a85-4324-801e-615beb725f65)" />
   <br />
   
 </div>
