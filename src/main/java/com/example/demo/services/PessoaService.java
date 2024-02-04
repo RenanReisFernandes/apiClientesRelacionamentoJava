@@ -27,5 +27,9 @@ public class PessoaService {
 	public Pessoa insert(Pessoa pessoa) {
 		return pessoaRepository.save(pessoa);
 	}
+	
+	public void delete(Long id) {
+		pessoaRepository.deleteById(id);
+	}
 
 }
