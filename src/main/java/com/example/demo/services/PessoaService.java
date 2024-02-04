@@ -23,5 +23,9 @@ public class PessoaService {
 		Optional<Pessoa> obj = pessoaRepository.findById(id);
 		return obj.get();
 	}
+	
+	public Pessoa insert(Pessoa pessoa) {
+		return pessoaRepository.save(pessoa);
+	}
 
 }
