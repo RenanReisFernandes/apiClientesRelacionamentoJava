@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import com.example.demo.entities.Categoria;
+import com.example.demo.entities.Pagamento;
 import com.example.demo.entities.Pedido;
 import com.example.demo.entities.Pessoa;
 import com.example.demo.entities.Produto;
@@ -80,7 +81,14 @@ public class TestConfig implements CommandLineRunner {
 		
 		produtoPedidoRepository.saveAll(Arrays.asList(pp1,pp2));
 		
+		// INSTANCIANDO PAGAMENTO NO PEDIDO1
 		
+		 Pagamento pag1 = new Pagamento(null,Instant.parse("1986-12-06T23:35:07Z"),pedido1);
+		
+		 //Salvandoooo, ASSOCIANDO pagamento pag1 que é dependente do PEDIDO de pedido1
+		 pedido1.setPagamento(pag1);
+		
+		 pedidoRepository.save(pedido1);
 		
 	}
 }
