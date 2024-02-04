@@ -84,6 +84,14 @@ public class Pedido implements Serializable {
 		this.pagamento=pagamento;
 	}
 	
+	public Double getTotal() {
+		double soma = 0.0;
+		for(ProdutoPedido produtoPedido: item  ) {
+			soma = soma + produtoPedido.getSubTotal();
+		}
+		return soma;
+	}
+	
 	@Override
 	public String toString() {
 		return "Pedido [id=" + id + ", data=" + data + ", pessoa=" + cliente + "]";
