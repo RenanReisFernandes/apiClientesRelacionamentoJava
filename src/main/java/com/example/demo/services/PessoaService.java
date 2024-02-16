@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.entities.Pessoa;
 import com.example.demo.repositories.PessoaRepository;
+import com.example.demo.services.exceptions.RecursoNaoEncontradoException;
 
 @Service
 public class PessoaService {
@@ -21,7 +22,7 @@ public class PessoaService {
 	//findById
 	public Pessoa findById(Long id) {
 		Optional<Pessoa> obj = pessoaRepository.findById(id);
-		return obj.get();
+		return obj.orElseThrow(()-> new RecursoNaoEncontradoException(id));
 	}
 	//save
 	public Pessoa insert(Pessoa pessoa) {
