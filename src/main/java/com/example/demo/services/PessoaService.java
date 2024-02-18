@@ -4,10 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entities.Pessoa;
 import com.example.demo.repositories.PessoaRepository;
+import com.example.demo.resources.exceptions.DatabaseException;
 import com.example.demo.services.exceptions.RecursoNaoEncontradoException;
 
 @Service
@@ -30,7 +33,13 @@ public class PessoaService {
 	}
 	//delete
 	public void delete(Long id) {
-		pessoaRepository.deleteById(id);
+		try {
+			pessoaRepository.deleteById(id);
+		}catch(EmptyResultDataAccessException e) {
+			throw new RecursoNaoEncontradoException(id);
+		}catch(DataIntegrityViolationException e) {
+			throw new DatabaseException(e.getMessage());
+		}
 	}
 	//update
 	public Pessoa update(Long id, Pessoa pessoa) {
