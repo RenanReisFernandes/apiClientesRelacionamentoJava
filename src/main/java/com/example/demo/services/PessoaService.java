@@ -13,6 +13,8 @@ import com.example.demo.repositories.PessoaRepository;
 import com.example.demo.resources.exceptions.DatabaseException;
 import com.example.demo.services.exceptions.RecursoNaoEncontradoException;
 
+import jakarta.persistence.EntityNotFoundException;
+
 @Service
 public class PessoaService {
 	
@@ -43,9 +45,13 @@ public class PessoaService {
 	}
 	//update
 	public Pessoa update(Long id, Pessoa pessoa) {
-		Pessoa entidade = pessoaRepository.getReferenceById(id);
-		updateDados(entidade, pessoa);
-		return pessoaRepository.save(entidade);
+		try {
+			Pessoa entidade = pessoaRepository.getReferenceById(id);
+			updateDados(entidade, pessoa);
+			return pessoaRepository.save(entidade);
+		}catch(EntityNotFoundException e) {
+			throw new RecursoNaoEncontradoException(id);
+		}
 	}
 	
 	public void updateDados(Pessoa entidade, Pessoa pessoa) {
