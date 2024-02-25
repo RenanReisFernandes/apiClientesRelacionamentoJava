@@ -1,13 +1,13 @@
-# API para gestão de clientes e produtos com seus relacionamentos
-## API criada para manter atualizadas as práticas de relacionamentos entre classes
-### Linguagen utilizada: JAVA
-![GitHub License]([https://img.shields.io/github/license/:user/:repo](https://github.com/RenanReisFernandes/apiClientesRelacionamentoJava/tree/main?tab=MIT-1-ov-file))
+> # API para gestão de clientes e produtos com seus relacionamentos
+> ## API criada para manter atualizadas as práticas de relacionamentos entre classes
+> ### Linguagen utilizada: JAVA ☕
 
+> ![license]([https://github.com/RenanReisFernandes/apiClientesRelacionamentoJava/assets/89070469/86dd0e22-58e9-4486-bbd5-dfa307ed6500](https://github.com/RenanReisFernandes/apiClientesRelacionamentoJava?tab=MIT-1-ov-file#))
 
-!.[REQUISIÇÃO DE PEDIDOS NO POSTMAN].(https://[github.com/RenanReisFernandes/apiClientesRelacionamentoJava/commit/2860ede78348c163e4314782f7518ec3954d564d](https://github.com/RenanReisFernandes/apiClientesRelacionamentoJava/blob/main/img/img2.PNG))
+> ### Requisição postman ![img1](https://github.com/RenanReisFernandes/apiClientesRelacionamentoJava/assets/89070469/86dd0e22-58e9-4486-bbd5-dfa307ed6500)
  
+📁
+> ### Métodos da classe de serviço  ![img2](https://github.com/RenanReisFernandes/apiClientesRelacionamentoJava/assets/89070469/9f263d25-6ead-4dc7-bb44-87913be0dae9)
 
- !.[ENDPOINTS].(https://github.com/RenanReisFernandes/apiClientesRelacionamentoJava/blob/c1a79735616b6f82db4dd672b61bab695ff5b5f3/img/img2.PNG)
-
-  !.[db].(https://github.com/RenanReisFernandes/apiClientesRelacionamentoJava/blob/c1a79735616b6f82db4dd672b61bab695ff5b5f3/img/img3.PNG)
+> ### Banco de dados H2 ![img3](https://github.com/RenanReisFernandes/apiClientesRelacionamentoJava/assets/89070469/754fcc36-d9cf-4a0a-bf79-a9e511b82528)
 
