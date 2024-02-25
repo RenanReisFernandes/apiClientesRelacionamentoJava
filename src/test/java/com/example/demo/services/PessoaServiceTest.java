@@ -2,7 +2,10 @@ package com.example.demo.services;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.doThrow;
+
+import java.util.Optional;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -70,4 +73,22 @@ class PessoaServiceTest {
 		}
 	}
 
+	@Nested
+	class findById{
+		
+		@Test
+		@DisplayName("Deve buscar pessoa por Id com sucesso")
+		void deveBuscarPessoaPorIdComSucesso() {
+			
+			//ARRANGE
+			var input = new Pessoa(1L, "nome",22);
+			doReturn(Optional.of(pessoaService)).when(pessoaRepository.save(pessoArgumentCaptor.capture()));
+			
+			//ACT
+			var output = pessoaService.findById(input.getId());
+			
+			//ASSERT
+			assertEquals(input.getId(), output.getId());
+		}
+	}
 }
