@@ -9,7 +9,7 @@
 <div style="text-align: center;">
   ### REQUISIÇÃO DE PEDIDOS NO POSTMAN
 
-  <img src="![img1](https://github.com/RenanReisFernandes/apiClientesRelacionamentoJava/assets/89070469/86dd0e22-58e9-4486-bbd5-dfa307ed6500)" />
+[ [ <img src="![img1](https://github.com/RenanReisFernandes/apiClientesRelacionamentoJava/assets/89070469/86dd0e22-58e9-4486-bbd5-dfa307ed6500)" />](https://github.com/RenanReisFernandes/apiClientesRelacionamentoJava/blob/main/img/img1.PNG)](https://github.com/RenanReisFernandes/apiClientesRelacionamentoJava/blob/main/img/img1.PNG)
  
   ###ENDPOINTS
   <img src="![img2](https://github.com/RenanReisFernandes/apiClientesRelacionamentoJava/assets/89070469/9f263d25-6ead-4dc7-bb44-87913be0dae9)" />
