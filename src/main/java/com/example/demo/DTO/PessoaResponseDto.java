@@ -4,23 +4,15 @@ import java.util.Objects;
 
 public class PessoaResponseDto {
 
-	private Long id;
 	private String nome;
 	private Integer idade;
 	public PessoaResponseDto() {
 		super();
 	}
-	public PessoaResponseDto(Long id, String nome, Integer idade) {
+	public PessoaResponseDto(String nome, Integer idade) {
 		super();
-		this.id = id;
 		this.nome = nome;
 		this.idade = idade;
-	}
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
 	}
 	public String getNome() {
 		return nome;
@@ -36,7 +28,7 @@ public class PessoaResponseDto {
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		return Objects.hash(idade, nome);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -47,11 +39,11 @@ public class PessoaResponseDto {
 		if (getClass() != obj.getClass())
 			return false;
 		PessoaResponseDto other = (PessoaResponseDto) obj;
-		return Objects.equals(id, other.id);
+		return Objects.equals(idade, other.idade) && Objects.equals(nome, other.nome);
 	}
 	@Override
 	public String toString() {
-		return "PessoaResponseDto [id=" + id + ", nome=" + nome + ", idade=" + idade + "]";
+		return "PessoaResponseDto [nome=" + nome + ", idade=" + idade + "]";
 	}
 	
 	

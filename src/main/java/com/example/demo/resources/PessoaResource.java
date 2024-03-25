@@ -15,7 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.example.demo.DTO.PessoaRequestDto;
+import com.example.demo.DTO.PessoaResponseDto;
 import com.example.demo.entities.Pessoa;
+import com.example.demo.mapper.PessoaMapper;
 import com.example.demo.services.PessoaService;
 
 @RestController
@@ -36,23 +39,24 @@ public class PessoaResource {
 		Pessoa pessoa = pessoaService.findById(id);
 		return ResponseEntity.ok().body(pessoa);
 	}
-	
+
 	@PostMapping
-	public ResponseEntity<Pessoa> insert(@RequestBody Pessoa pessoa){
-		pessoa = pessoaService.insert(pessoa);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-				.buildAndExpand(pessoa.getId()).toUri();
-		return ResponseEntity.created(uri).body(pessoa);
+	public ResponseEntity<PessoaResponseDto> insert(@RequestBody PessoaRequestDto pessoaRequestDto) {
+		Pessoa pessoa = PessoaMapper.toPessoa(pessoaRequestDto);
+		Pessoa pessoaSalva = pessoaService.insert(pessoa);
+		PessoaResponseDto pessoaResponseDto = PessoaMapper.toPessoaResponse(pessoaSalva);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(pessoa.getId()).toUri();
+		return ResponseEntity.created(uri).body(pessoaResponseDto);
 	}
-	
+
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<Void> delete(@PathVariable Long id){
+	public ResponseEntity<Void> delete(@PathVariable Long id) {
 		pessoaService.delete(id);
 		return ResponseEntity.noContent().build();
 	}
-	
+
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<Pessoa> update(@PathVariable Long id, @RequestBody Pessoa pessoa){
+	public ResponseEntity<Pessoa> update(@PathVariable Long id, @RequestBody Pessoa pessoa) {
 		pessoa = pessoaService.update(id, pessoa);
 		return ResponseEntity.ok().body(pessoa);
 	}
