@@ -2,8 +2,10 @@ package com.example.demo.resources;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,15 +31,19 @@ public class PessoaResource {
 	private PessoaService pessoaService;
 
 	@GetMapping
-	public ResponseEntity<List<Pessoa>> findAll() {
+	public ResponseEntity<List<PessoaResponseDto>> findAll() {
 		List<Pessoa> list = pessoaService.findAll();
-		return ResponseEntity.ok().body(list);
+		List<PessoaResponseDto> pessoaResponseDtos = PessoaMapper.toPessoaResponseList(list);
+		return ResponseEntity.ok().body(pessoaResponseDtos);
 	}
 
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Pessoa> findById(@PathVariable Long id) {
-		Pessoa pessoa = pessoaService.findById(id);
-		return ResponseEntity.ok().body(pessoa);
+	public ResponseEntity<PessoaResponseDto> findById(@PathVariable Long id) {
+		Optional<Pessoa> pessoa = Optional.ofNullable(pessoaService.findById(id));
+		if (pessoa.isEmpty()) {
+			return ResponseEntity.notFound().build();
+		}
+		return ResponseEntity.status(HttpStatus.OK).body(PessoaMapper.toPessoaResponse(pessoa.get()));
 	}
 
 	@PostMapping
@@ -56,8 +62,10 @@ public class PessoaResource {
 	}
 
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<Pessoa> update(@PathVariable Long id, @RequestBody Pessoa pessoa) {
-		pessoa = pessoaService.update(id, pessoa);
-		return ResponseEntity.ok().body(pessoa);
+	public ResponseEntity<PessoaResponseDto> update(@PathVariable Long id, @RequestBody PessoaRequestDto pessoaRequestDto) {
+		Pessoa pessoa = PessoaMapper.toPessoa(pessoaRequestDto);
+		Pessoa pessoaSave = pessoaService.update(id, pessoa);
+		PessoaResponseDto pessoaResponseDto = PessoaMapper.toPessoaResponse(pessoaSave);
+		return ResponseEntity.ok().body(pessoaResponseDto);
 	}
 }
