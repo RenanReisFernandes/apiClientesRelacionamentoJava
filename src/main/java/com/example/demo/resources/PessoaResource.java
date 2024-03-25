@@ -29,11 +29,13 @@ public class PessoaResource {
 
 	@Autowired
 	private PessoaService pessoaService;
+	
+	private PessoaMapper mapper;
 
 	@GetMapping
 	public ResponseEntity<List<PessoaResponseDto>> findAll() {
 		List<Pessoa> list = pessoaService.findAll();
-		List<PessoaResponseDto> pessoaResponseDtos = PessoaMapper.toPessoaResponseList(list);
+		List<PessoaResponseDto> pessoaResponseDtos = mapper.toPessoaResponseDtos(list);
 		return ResponseEntity.ok().body(pessoaResponseDtos);
 	}
 
@@ -43,14 +45,14 @@ public class PessoaResource {
 		if (pessoa.isEmpty()) {
 			return ResponseEntity.notFound().build();
 		}
-		return ResponseEntity.status(HttpStatus.OK).body(PessoaMapper.toPessoaResponse(pessoa.get()));
+		return ResponseEntity.status(HttpStatus.OK).body(mapper.toPessoaResponseDto(pessoa.get()));
 	}
 
 	@PostMapping
 	public ResponseEntity<PessoaResponseDto> insert(@RequestBody PessoaRequestDto pessoaRequestDto) {
-		Pessoa pessoa = PessoaMapper.toPessoa(pessoaRequestDto);
+		Pessoa pessoa = mapper.toPessoa(pessoaRequestDto);
 		Pessoa pessoaSalva = pessoaService.insert(pessoa);
-		PessoaResponseDto pessoaResponseDto = PessoaMapper.toPessoaResponse(pessoaSalva);
+		PessoaResponseDto pessoaResponseDto = mapper.toPessoaResponseDto(pessoaSalva);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(pessoa.getId()).toUri();
 		return ResponseEntity.created(uri).body(pessoaResponseDto);
 	}
@@ -63,9 +65,9 @@ public class PessoaResource {
 
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<PessoaResponseDto> update(@PathVariable Long id, @RequestBody PessoaRequestDto pessoaRequestDto) {
-		Pessoa pessoa = PessoaMapper.toPessoa(pessoaRequestDto);
+		Pessoa pessoa = mapper.toPessoa(pessoaRequestDto);
 		Pessoa pessoaSave = pessoaService.update(id, pessoa);
-		PessoaResponseDto pessoaResponseDto = PessoaMapper.toPessoaResponse(pessoaSave);
+		PessoaResponseDto pessoaResponseDto = mapper.toPessoaResponseDto(pessoaSave);
 		return ResponseEntity.ok().body(pessoaResponseDto);
 	}
 }
